@@ -3,12 +3,11 @@ import { NextFunction, Request,Response } from "express"
 const logger =(req:Request,res:Response,next:NextFunction)=>{
 
     const time= Date.now();
-    const method=req.method;
-    const path=req.originalUrl
-    const protocol=req.protocol;
-    const localhost=req.host;
 
-    let str=protocol+"://"+localhost+path;
+    const { method, originalUrl, protocol,host } = req;
+
+
+    let str=protocol+"://"+host+originalUrl;
 
     console.log(str,time,method);
 

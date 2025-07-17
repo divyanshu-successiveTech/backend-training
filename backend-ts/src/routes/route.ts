@@ -1,18 +1,12 @@
 import { Router } from "express";
-import {userRouter} from "./dataSeeding/user.route"
-import { loginRouter } from "./dataSeeding/login.route";
-import { dashBoardRouter } from "./dataSeeding/dashboard.route";
-import { loggerRouter } from "./dataSeeding/loggerCheck.route";
-import { errorRoute } from "./dataSeeding/ErrorLog.route";
-import { multiRoute } from "./dataSeeding/multi.route";
-import { headerRouter } from "./dataSeeding/header.route";
-import { rateRouter } from "./dataSeeding/rateLimiter.route";
-import { loginValidaterouter } from "./validation/loginValidator.route";
-import { checkRouter } from "./validation/check.route";
-import { queryRouter } from "./validation/queryCheck.route";
-import { locationRouter } from "./validation/locationValidation.route";
-import { dynamicRouter1 } from "./validation/dynamicRoute1.route";
-import { dynamicRouter2 } from "./validation/dynamicRoute2.route";
+import {userRouter} from "./QuestionsRoutes/user.route"
+import { loginRouter } from "./QuestionsRoutes/login.route";
+import { dashBoardRouter } from "./QuestionsRoutes/dashboard.route";
+import { loggerRouter } from "./QuestionsRoutes/loggerCheck.route";
+import { errorRoute } from "./QuestionsRoutes/ErrorLog.route";
+import { multiRoute } from "./QuestionsRoutes/multi.route";
+import { headerRouter } from "./QuestionsRoutes/header.route";
+import { rateRouter } from "./QuestionsRoutes/rateLimiter.route";
 
 
 const Allrouter = Router();

@@ -1,15 +1,14 @@
 import { Request,Response,NextFunction } from "express"
 import { default as jwt } from 'jsonwebtoken';
 
-const secret = "asdfgh"; 
+
+
 
 const authenticate=(req:Request,res:Response,next:NextFunction)=>{
+  const secret = process.env.JWT_SECRET || "";
 
     const authHead = req.headers['authorization'];
-    
-
-    const token = authHead?.split(' ')[1] 
-    console.log(token)
+    const token = authHead && authHead.split(' ')[1];
     
     if (!token) {
     return res.sendStatus(400);
