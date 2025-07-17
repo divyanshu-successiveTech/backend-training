@@ -1,5 +1,5 @@
 Operations,num1,num2,Result
-Sum,2,2,4
-Subtract,2,2,0
-Multiply,2,2,4
-Sum,2,2,1
+Sum,5,7,12
+Subtract,5,7,-2
+Multiply,5,7,35
+Divide,5,7,0.7142857142857143

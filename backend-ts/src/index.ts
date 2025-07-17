@@ -44,7 +44,7 @@ function writing({a,b,sum,subtract,multiply,divide}:Parameters){
         ["Sum",`${a}`,`${b}`,`${sum}`],
         ["Subtract",`${a}`,`${b}`,`${subtract}`],
         ["Multiply",`${a}`,`${b}`,`${multiply}`],
-        ["Sum",`${a}`,`${b}`,`${divide}`]
+        ["Divide",`${a}`,`${b}`,`${divide}`]
     ]
 
     const data = content.map(row => row.join(",")).join("\n");
