@@ -6,7 +6,10 @@ const secret = "asdfgh";
 const authenticate=(req:Request,res:Response,next:NextFunction)=>{
 
     const authHead = req.headers['authorization'];
-    const token = authHead 
+    
+
+    const token = authHead?.split(' ')[1] 
+    console.log(token)
     
     if (!token) {
     return res.sendStatus(400);
