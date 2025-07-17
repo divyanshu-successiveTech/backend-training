@@ -1,4 +1,6 @@
-const express = require('express');
+import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import { type Request,type Response } from "express";
 import { Allrouter } from "./routes/route";
