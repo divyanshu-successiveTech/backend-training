@@ -11,9 +11,9 @@ const userInput = readline_1.default.createInterface({
     output: process.stdout
 });
 userInput.question("Enter first number ", (a) => {
-    console.log(`enter number is ${a}`);
-    userInput.question("Enter secind number ", (b) => {
-        console.log(`enter number is ${b}`);
+    console.log(`First number is ${a}`);
+    userInput.question("Enter second number ", (b) => {
+        console.log(`Second number is ${b}`);
         let sum = (0, math_1.Add)(parseFloat(a), parseFloat(b));
         console.log("Sum  ", sum);
         let subtract = (0, math_1.Subtract)(parseFloat(a), parseFloat(b));

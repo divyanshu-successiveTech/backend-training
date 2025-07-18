@@ -1,14 +1,20 @@
-const express = require('express');
+import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import { type Request,type Response } from "express";
+import { Allrouter } from "./routes/route";
+import { errorLogger } from "./utils/errorLogger";
 const app = express();
 const port = 3000;
 
-const data:{id:number,data:string}[]=require('./mockData')
+app.use(express.json());
 
-app.get('/', (req:Request, res:Response) => {
-  res.send(data);
-});
+app.use("/begin",Allrouter)
+
+app.use(errorLogger);
+
+
 
 app.listen(port,()=>{
   console.log(`Running on port ${port}`);
