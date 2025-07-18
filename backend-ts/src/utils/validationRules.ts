@@ -1,6 +1,5 @@
 import { NextFunction ,Request,Response} from "express";
 import { schemaList } from "./schemaList";
-import Joi from "joi";
 
 
 export const checkDynamicRoute=(req:Request,res:Response,next:NextFunction)=>{
@@ -13,6 +12,7 @@ export const checkDynamicRoute=(req:Request,res:Response,next:NextFunction)=>{
     }
 
     const {error} = currSchema.validate(req.body)
+    console.log(req.body);
 
     if(error){
         return res.status(400).send("Invalid format")

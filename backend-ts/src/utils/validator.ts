@@ -1,5 +1,5 @@
 import { NextFunction,Request,Response } from "express";
-import Joi from "joi";
+import Joi from "joi"
 export const userSchema = Joi.object({
 
     username: Joi.string().alphanum().min(3).max(30).required(),
