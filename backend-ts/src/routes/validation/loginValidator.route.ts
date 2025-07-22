@@ -1,13 +1,9 @@
-import { NextFunction, Router } from "express";
-import { userSchema, validateJoi } from "../../utils/validator";
-import { Request,Response } from "express";
+import { Router } from "express";
+import { userSchema, validateJOI } from "../../middleware/validator";
+import { loginValidatorController } from "../../controllers/loginValidatorController";
 
 const loginValidaterouter=Router();
 
-loginValidaterouter.post("/loginValidate", validateJoi(userSchema),(req:Request,res:Response,next:NextFunction)=>{
-    res.send("Login Successfull");
-    next();
-
-})
+loginValidaterouter.post("/loginValidate", validateJOI.validateJoi(userSchema),loginValidatorController.loginValidator)
 
 export {loginValidaterouter}

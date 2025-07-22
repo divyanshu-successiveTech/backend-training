@@ -1,10 +1,9 @@
 import { Router,Request,Response } from "express";
-import { customHeader } from "../../utils/customHeader";
+import { customHead } from "../../middleware/customHeader";
+import { customHeaderController } from "../../controllers/customeHeaderController";
 
 const headerRouter= Router();
 
-headerRouter.get("/header",customHeader,(req:Request,res:Response)=>{
-    res.send(req.headers["customHead"]);
-})
+headerRouter.get("/header",customHead.customHeader,customHeaderController.customHeader)
 
 export {headerRouter}

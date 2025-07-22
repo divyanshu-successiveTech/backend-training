@@ -1,11 +1,9 @@
 import { Router, Request,Response } from "express";
-import { authenticate } from "../../utils/authenticate";
+import { authenticate } from "../../middleware/authenticate";
+import { authenticateController } from "../../controllers/authenticateController";
 
 const dashBoardRouter = Router();
 
-dashBoardRouter.get("/dashboard",authenticate ,(req:Request,res:Response)=>{
-    res.send("welcome to dashboard")
-
-})
+dashBoardRouter.get("/dashboard",authenticate.authenticate ,authenticateController.authenticateController)
 
 export {dashBoardRouter}

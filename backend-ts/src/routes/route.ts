@@ -27,6 +27,8 @@ import { Router503 } from "./ErrorRoutes/503.error.route";
 import { Router504 } from "./ErrorRoutes/504error.route";
 import { asyncErrorRouter } from "./AsyncError/error.route";
 import { validatorRouter } from "./InputValidator/sampleValidator.route";
+import { mongoRouter } from "./CRUD Operations/Operations.route";
+import { healthRouter } from "./HealthCheck/healthCheck";
 
 
 const Allrouter = Router();
@@ -60,7 +62,8 @@ Allrouter.use(Router503);
 Allrouter.use(Router504);
 Allrouter.use(asyncErrorRouter);
 Allrouter.use(validatorRouter);
-
+Allrouter.use(mongoRouter);
+Allrouter.use(healthRouter);
 
 
 export {Allrouter};
