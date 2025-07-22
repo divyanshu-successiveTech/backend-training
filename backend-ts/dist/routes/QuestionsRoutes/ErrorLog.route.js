@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.errorRoute = void 0;
+const express_1 = require("express");
+const second_1 = require("../../middleware/second");
+const first_1 = require("../../middleware/first");
+const errorLoggerController_1 = require("../../controllers/errorLoggerController");
+const errorRoute = (0, express_1.Router)();
+exports.errorRoute = errorRoute;
+errorRoute.get("/errorcheck", first_1.first.firstmiddleware, second_1.second.secondmiddleware, errorLoggerController_1.errorLogController.errorLogController);

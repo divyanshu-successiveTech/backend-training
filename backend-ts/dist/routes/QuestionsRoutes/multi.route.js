@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.multiRoute = void 0;
+const express_1 = require("express");
+const multi1_1 = require("../../middleware/multi1");
+const multi2_1 = require("../../middleware/multi2");
+const multiRouteController_1 = require("../../controllers/multiRouteController");
+const multiRoute = (0, express_1.Router)();
+exports.multiRoute = multiRoute;
+multiRoute.get("/multi", multi1_1.multi1.multi1, multi2_1.multi2.multi2, multiRouteController_1.multiRoutesController.multiRoutes);
