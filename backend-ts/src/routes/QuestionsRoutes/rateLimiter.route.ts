@@ -5,10 +5,10 @@ import { Response,Request } from "express";
 
 const rateRouter= Router();
 
-rateRouter.use(rateLimiter);
 
 
-rateRouter.get('/limit', (req: Request, res: Response) => {
+
+rateRouter.get('/limit', rateLimiter,(req: Request, res: Response) => {
   setTimeout(() => {
     res.send(`Called ${obj.running}`);
 
