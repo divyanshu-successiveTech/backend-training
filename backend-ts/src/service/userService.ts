@@ -9,6 +9,12 @@ class userService{
 
     }
 
+
+    async send(data:typeof User){
+        await data.save();
+        return data;
+    }
+
 }
 
 export const userservice = new userService()
