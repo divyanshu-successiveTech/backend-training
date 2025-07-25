@@ -1,19 +1,12 @@
 import { NextFunction, Router } from "express";
-import { second } from "../../utils/second";
-import { first } from "../../utils/first";
+import { second } from "../../middleware/second";
+import { first } from "../../middleware/first";
 
 import { Request,Response } from "express";
+import { errorLogController } from "../../controllers/errorLoggerController";
 
 const errorRoute = Router();
 
-errorRoute.get("/errorcheck",first,second,(req:Request,res:Response,next:NextFunction)=>{
-
-    try {
-    throw new Error("Something went wrong");
-  } catch (err) {
-    next(err); 
-  }
-
-})
+errorRoute.get("/errorcheck",first.firstmiddleware,second.secondmiddleware,errorLogController.errorLogController)
 
 export {errorRoute}

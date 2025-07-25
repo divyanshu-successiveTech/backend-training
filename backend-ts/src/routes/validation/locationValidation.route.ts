@@ -1,11 +1,9 @@
-import { Request,Response,NextFunction, Router } from "express";
-import { locationCheck } from "../../utils/locationCheck";
+import { Router } from "express";
+import { locationCheck } from "../../middleware/locationCheck";
+import { locationController } from "../../controllers/locationController";
 
 const locationRouter = Router();
 
-locationRouter.get("/location",locationCheck,(req:Request,res:Response,next:NextFunction)=>{
-    res.status(res.locals.status).json({"Message":res.locals.message})
-
-})
+locationRouter.get("/location",locationCheck.locationCheck,locationController.locationUpdate)
 
 export {locationRouter}

@@ -1,11 +1,9 @@
 import { Request,Response,Router } from "express";
-import { checkJoi, checkSchema } from "../../utils/checker";
+import { checkJoi, checkSchema } from "../../middleware/checker";
+import { checkController } from "../../controllers/checkController";
 
 const checkRouter= Router();
 
-checkRouter.post("/checking",checkJoi(checkSchema),(req:Request,res:Response)=>{
-    res.send("Values are correct")
-
-})
+checkRouter.post("/checking",checkJoi.checkJoi(checkSchema),checkController.check)
 
 export {checkRouter}
