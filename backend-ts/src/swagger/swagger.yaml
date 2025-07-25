@@ -1,0 +1,208 @@
+openapi: 3.0.0
+info:
+  title: My API
+  version: 1.0.0
+  description: API documentation for routes starting with /begin/
+servers:
+  - url: http://localhost:3000
+paths:
+  /begin/hello:
+    get:
+      summary: Returns mockdata 
+      responses:
+        '200':
+          description: Object containing arrays of mock user data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    data:
+                      type: string
+
+  /begin/login:
+    get:
+        summary: Returs a token
+        responses:
+          '200':
+            description: Object that have a property token and token as its value
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+
+  /begin/dashboard:
+    get:
+      summary: Access dashboard (requires authentication)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Access granted
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: welcome to dashboard
+        '400':
+          description: Bad Request
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  /begin/log:
+  get:
+    summary: Logs full request URL
+    description: Logs the complete URL to the server console and responds with a confirmation message
+    responses:
+      '200':
+        description: Log confirmation
+        content:
+          text/plain:
+            schema:
+              type: string
+
+  /begin/errorcheck:
+  get:
+    summary: Checks and reports which middleware handled errors
+    description: Returns a message indicating in which middleware the error occurred
+    responses:
+      '200':
+        description: Middleware error check result
+        content:
+          text/plain:
+            schema:
+              type: string
+
+  /begin/multi:
+  get:
+    summary: Route passing through multiple middlewares
+    description: Executes all middlewares in sequence and returns a final message
+    responses:
+      '200':
+        description: Final response after all middlewares
+        content:
+          text/plain:
+            schema:
+              type: string
+
+  /begin/header:
+  get:
+    summary: Returns custom header value
+    description: Returns the custom header value set from environment variables
+    responses:
+      '200':
+        description: Custom header string returned
+        content:
+          text/plain:
+            schema:
+              type: string
+
+  /begin/limit:
+  get:
+    summary: Limits number of concurrent requests
+    description: Allows only a set number of concurrent request to run at a time
+    responses:
+      '200':
+        description: Request number returned
+        content:
+          text/plain:
+          schema:
+            type: string
+      '400':
+        description: Limit reached message
+        content:
+        text/plain:
+        schema:
+          type: string
+
+  /begin/loginValidate:
+    post:
+      summary: User login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - email
+                - password
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login Successful
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Invalid format
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /begin/checking:
+    post:
+      summary: Checks Input Values
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - lastname
+                - email
+                - password
+              properties:
+                username:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Correct Values
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Incorrect Values
+          content:
+            text/plain:
+              schema:
+                type: string
+
+
+
+
+  
+
+
+                    
