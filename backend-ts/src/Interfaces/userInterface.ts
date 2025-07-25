@@ -7,6 +7,10 @@ interface UserInterface{
     getUserData:(req: Request, res: Response, next: NextFunction)=>void;
 
     findUser:(req:Request,res:Response,next:NextFunction)=>Promise<typeof User>
+
+    saveUser:(req:Request,res:Response,next:NextFunction)=>Promise<typeof User>
+
+
 }
 
 export default UserInterface

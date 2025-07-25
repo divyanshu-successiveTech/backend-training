@@ -10,7 +10,6 @@ const countries = ['Brazil', 'Germany', 'Argentina', 'France', 'Italy', 'Spain',
 class Seeding {
     async seedData() {
         const countryDocs = countries.map(name => ({ countryName: name }));
-        console.log(countryDocs);
         await Country.deleteMany();
         await Country.insertMany(countryDocs);
     }
