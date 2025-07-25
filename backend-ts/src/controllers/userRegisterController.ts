@@ -18,12 +18,10 @@ class UserRegisterController implements userRegisterControllerInterface{
 
          
         
-        const token=jwt.sign(req.body,secret,{expiresIn:'1h'});
         
 
-        res.send({status:200,
+        res.status(201).send({status:201,
             message:"User registered successfully",
-            token:token,
             user:{result}
         })
     }
@@ -31,9 +29,22 @@ class UserRegisterController implements userRegisterControllerInterface{
     async getData(req:Request,res:Response){
         const {userName,email,password} = req.body;
         const userValues = await userRegisterService.findUserData(userName);
+        let token =""
+
 
         if(userValues){
-            await bcrypt.compare(password,userValues.password)? res.send("LOGIN SUCCESSFULL") : res.send("INVALID PASSWORD");
+            if(await bcrypt.compare(password,userValues.password)){
+                token=jwt.sign(req.body,secret,{expiresIn:'1h'}); 
+                res.send({Status:200,
+                    Message:"LOGIN SUCCESSFULL",
+                    Token:token,
+                })
+            }else{
+                res.send("INVALID PASSWORD")
+
+            }
+             
+
         }else{
             res.send("User does not Exist")
         }

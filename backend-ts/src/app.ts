@@ -7,6 +7,10 @@ import { Request, Response,NextFunction } from "express";
 import { Allrouter } from "./routes/route";
 import { errorLogger } from "./middleware/errorLogger";
 import mongoose from 'mongoose';
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./src/swagger/swagger.yaml');
+
 
 const app = express();
 const port = 3000;
@@ -20,6 +24,9 @@ const db = mongoose.connection;
 db.once('open',()=>console.log("Connected"));
 
 app.use("/begin",Allrouter)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   next(createError(404, 'Not Found'));
