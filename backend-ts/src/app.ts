@@ -7,6 +7,7 @@ import { Request, Response,NextFunction } from "express";
 import { Allrouter } from "./routes/route";
 import { errorLogger } from "./middleware/errorLogger";
 import mongoose from 'mongoose';
+import { errorHandler } from './utils/Errors';
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./src/swagger/swagger.yaml');
@@ -33,6 +34,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use(errorLogger.errorLogger);
+
+app.use(errorHandler.customError);
 
 
 

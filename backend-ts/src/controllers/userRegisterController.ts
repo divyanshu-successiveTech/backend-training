@@ -9,7 +9,8 @@ const secret =process.env.JWT_SECRET || ""
 class UserRegisterController implements userRegisterControllerInterface{
     async userDetails(req:Request,res:Response,next:NextFunction){
 
-        const bodyValue = req.body;
+        let bodyValue = req.body.value;
+        
         const pass = await bcrypt.hash(bodyValue.password,7);
         bodyValue.password = pass;
         
@@ -35,10 +36,18 @@ class UserRegisterController implements userRegisterControllerInterface{
         if(userValues){
             if(await bcrypt.compare(password,userValues.password)){
                 token=jwt.sign(req.body,secret,{expiresIn:'1h'}); 
-                res.send({Status:200,
-                    Message:"LOGIN SUCCESSFULL",
-                    Token:token,
-                })
+                if(userValues.role.toLowerCase() == "admin"){
+                    res.send({Status:200,
+                        Message:"LOGIN SUCCESSFULL AS ADMIN",
+                        Token:token,
+                    })
+
+                }else{
+                    res.send({Status:200,
+                        Message:"LOGIN SUCCESSFULL",
+                        Token:token,
+                    })
+                }
             }else{
                 res.send("INVALID PASSWORD")
 
