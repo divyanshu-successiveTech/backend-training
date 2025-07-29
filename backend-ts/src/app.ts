@@ -8,6 +8,7 @@ import { Allrouter } from "./routes/route";
 import { errorLogger } from "./middleware/errorLogger";
 import mongoose from 'mongoose';
 import { errorHandler } from './utils/Errors';
+import { securityHeaderMiddleware } from './middleware/securityHeadersMiddleware';
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./src/swagger/swagger.yaml');
@@ -17,6 +18,8 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+app.use(securityHeaderMiddleware.giveSecurityHeader)
 
 mongoose.connect("mongodb://localhost:27017/SuccessiveDB");
 
