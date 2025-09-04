@@ -8,21 +8,30 @@ import { Allrouter } from "./routes/route";
 import { errorLogger } from "./middleware/errorLogger";
 import mongoose from 'mongoose';
 import { errorHandler } from './utils/Errors';
+import { securityHeaderMiddleware } from './middleware/securityHeadersMiddleware';
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./src/swagger/swagger.yaml');
+const helmet = require('helmet');
 
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(helmet());
+
+// app.use(securityHeaderMiddleware.giveSecurityHeader)
 
 mongoose.connect("mongodb://localhost:27017/SuccessiveDB");
 
 const db = mongoose.connection;
 
 db.once('open',()=>console.log("Connected"));
+
+app.get("/check",(req:Request,res:Response)=>{
+  res.send("working");
+})
 
 app.use("/begin",Allrouter)
 

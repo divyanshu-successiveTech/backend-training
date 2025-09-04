@@ -199,7 +199,144 @@ components:
               schema:
                 type: string
 
+  /begin/query:
+    post:
+      summary: Checks if the query parameter is number or not
+      description: Returns the value of the `Num` query parameter.
+      parameters:
+        - name: Num
+          in: query
+          required: true
+          description: The query parameter to check
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query parameter is correct
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Query parameter is wrong
+          content:
+            text/plain:
+              schema:
+                type: string
 
+  /begin/location:
+    post:
+      summary: Check if the location is correct or not
+      description: Check the given location in already available array of locations
+      parameters:
+        - name: Latitude
+          in: query
+          required: true
+          description: The query parameter for Latitude
+          schema:
+            type: number
+        - name: Longitude
+          in: query
+          required: true
+          description: The query parameter for Longitude
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Successfully found the given location in the list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message: string
+        '400':
+          description: Location not in the available array
+          content:
+            text/plain:
+            schema:
+              type: string
+
+  /begin/student:
+    post:
+      summary: Validate student data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName: string
+                lastName: string
+                age: number
+      responses:
+        '200':
+          description: Successful validation of student data
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Invalid student data format
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Wrong path
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /begin/teacher:
+    post:
+      summary: Validate teacher data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                teacherName: string
+                subject: string
+      responses:
+        '200':
+          description: Successful validation of teacher data
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Invalid teacher data format
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Wrong path
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /begin/error:
+    get: 
+      summary: Trigger an internal server error
+      description: This endpoint intentionally throws an error to test error handling.
+      responses:
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                type: string
+                
+
+        
+          
 
 
   
